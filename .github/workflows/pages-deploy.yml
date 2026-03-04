@@ -1,4 +1,4 @@
-name: "Build and Deploy Chirpy"
+name: "Chirpy Pages Deploy"
 
 on:
   push:
@@ -16,23 +16,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Configure GitHub Pages
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
-      # 3️⃣ Upload static site artifact (entire repo root for Chirpy)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: .
+          path: .  # root of Chirpy site
 
-      # 4️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
